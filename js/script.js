@@ -39,3 +39,5 @@ let listarFilmes = async (filmes) => {
         })
     }
 }
+let btnDetalhesFilme = document.querySelector(".btn-detalhes");
+

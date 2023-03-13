@@ -2,3 +2,17 @@
     margin:0;
     padding: 0;
 }
+.navbar-brand img{
+    width: 3rem;
+}
+#lista-filmes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    padding: 2rem;
+    
+
+}
+.card{
+    padding: 15px;
+}
