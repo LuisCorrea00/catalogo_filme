@@ -75,19 +75,22 @@ class Filme
 
         return card;
     }
-    getCardDetalhes = async () => {
+    getCardDetalhes = () => {
         let cardDetalhes = document.createElement('div');
         cardDetalhes.setAttribute("class","cardDetalhes");
+        cardDetalhes.setAttribute("style","display:flex; padding: 2rem;");
         let imgDetalhes = document.createElement("img");
         imgDetalhes.setAttribute("class","card-img-detalhes");
         imgDetalhes.setAttribute("src",this.cartaz);
         let cardBodyDetalhes = document.createElement("div");
         cardBodyDetalhes.setAttribute("class","card-body-detalhes");
+        cardBodyDetalhes.setAttribute("style","margin-left: 2rem;");
         let hCardTitle = document.createElement("h5");
         hCardTitle.setAttribute("class", "card-title");
+        hCardTitle.setAttribute("style", "text-align:center;");
         hCardTitle.appendChild(document.createTextNode(this.titulo));
         let divDetalhes = document.createElement("div");
-        divDetalhes.setAttribute("Style","display:flex; justify-content:space-around;");
+        divDetalhes.setAttribute("Style","display:flex; justify-content:space-around; flex-direction: column; align-items: center;");
         let divAno = document.createElement("div");
         let divGenero = document.createElement("div");
         let divDuracao = document.createElement("div");

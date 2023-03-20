@@ -29,6 +29,7 @@ btnBuscarFilme.onclick = () => {
             listarFilmes(filmes);
         })
     }
+    mostrarFilmes.style.display = 'none';
     return false;
 }
 let listarFilmes = async (filmes) => { 
@@ -41,7 +42,7 @@ let listarFilmes = async (filmes) => {
             listaFilmes.appendChild(await filme.getCard());
             filme.getBtnDetalhes().onclick= async()=>{
                 listaFilmes.style.display = 'none';
-                detalhesFilme(filme.id)
+                detalhesFilme(filme.id);
             }
         })
     }
@@ -65,7 +66,9 @@ let detalhesFilme = async (id) =>{
             resp.Awards,
             resp.imdbRating
         );
-        mostrarFilmes.appendChild(await filme.getCardDetalhes());
+        console.log(filme.getCardDetalhes());
+        mostrarFilmes.style.display = 'flex';
+        mostrarFilmes.appendChild(filme.getCardDetalhes());
     })
 }
 
