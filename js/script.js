@@ -1,5 +1,7 @@
 let inputBuscarFilme = document.querySelector('#input-buscar-filme');
 let btnBuscarFilme = document.querySelector('#btn-buscar-filme');
+let listaFilmes =  document.querySelector("#lista-filmes");
+let mostrarFilmes = document.querySelector('#mostrar-filme');
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -29,15 +31,43 @@ btnBuscarFilme.onclick = () => {
     }
     return false;
 }
-let listarFilmes = async (filmes) => {
-    let listaFilmes = await document.querySelector("#lista-filmes");
+let listarFilmes = async (filmes) => { 
+    listaFilmes.style.display = 'flex';
     listaFilmes.innerHTML = "";
+    mostrarFilmes.innerHTML = "";
     console.log(listaFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
+            console.log(filme);
             listaFilmes.appendChild(await filme.getCard());
+            filme.getBtnDetalhes().onclick= async()=>{
+                listaFilmes.style.display = 'none';
+                detalhesFilme(filme.id)
+                mostrarFilmes.appendChild(await filme.getCard());
+            }
         })
     }
 }
-let btnDetalhesFilme = document.querySelector(".btn-detalhes");
+
+let detalhesFilme = async (id) =>{
+    fetch("http://www.omdbapi.com/?apikey=b8335c46&i="+id)
+    .then((resp) => resp.json())
+    .then((resp) => {
+        console.log(resp);
+        let filme = new Filme(
+            resp.imdbID,
+            resp.Title,
+            resp.Year,
+            resp.Genre.split(","),
+            resp.Runtime,
+            resp.Poster,
+            resp.Plot,
+            resp.Director,
+            resp.Actors.split(","),
+            resp.Awards,
+            resp.imdbRating
+        );
+        
+    })
+}
 

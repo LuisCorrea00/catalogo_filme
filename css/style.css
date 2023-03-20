@@ -6,13 +6,14 @@
     width: 3rem;
 }
 #lista-filmes{
-    display: flex;
     flex-wrap: wrap;
     justify-content:center;
     padding: 2rem;
     
-
 }
 .card{
     padding: 15px;
+}
+.hidden{
+    display: none;
 }
