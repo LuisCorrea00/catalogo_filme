@@ -34,7 +34,6 @@ btnBuscarFilme.onclick = () => {
 let listarFilmes = async (filmes) => { 
     listaFilmes.style.display = 'flex';
     listaFilmes.innerHTML = "";
-    mostrarFilmes.innerHTML = "";
     console.log(listaFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
@@ -43,7 +42,6 @@ let listarFilmes = async (filmes) => {
             filme.getBtnDetalhes().onclick= async()=>{
                 listaFilmes.style.display = 'none';
                 detalhesFilme(filme.id)
-                mostrarFilmes.appendChild(await filme.getCard());
             }
         })
     }
@@ -67,7 +65,7 @@ let detalhesFilme = async (id) =>{
             resp.Awards,
             resp.imdbRating
         );
-        
+        mostrarFilmes.appendChild(await filme.getCardDetalhes());
     })
 }
 

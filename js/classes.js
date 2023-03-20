@@ -76,6 +76,48 @@ class Filme
         return card;
     }
     getCardDetalhes = async () => {
-        
-    }
+        let cardDetalhes = document.createElement('div');
+        cardDetalhes.setAttribute("class","cardDetalhes");
+        let imgDetalhes = document.createElement("img");
+        imgDetalhes.setAttribute("class","card-img-detalhes");
+        imgDetalhes.setAttribute("src",this.cartaz);
+        let cardBodyDetalhes = document.createElement("div");
+        cardBodyDetalhes.setAttribute("class","card-body-detalhes");
+        let hCardTitle = document.createElement("h5");
+        hCardTitle.setAttribute("class", "card-title");
+        hCardTitle.appendChild(document.createTextNode(this.titulo));
+        let divDetalhes = document.createElement("div");
+        divDetalhes.setAttribute("Style","display:flex; justify-content:space-around;");
+        let divAno = document.createElement("div");
+        let divGenero = document.createElement("div");
+        let divDuracao = document.createElement("div");
+        let divDirecao = document.createElement("div");
+        let divElenco = document.createElement("div");
+        let divAvaliacao = document.createElement("div");
+        let divSinopse = document.createElement("div");
+       
+        divAno.appendChild(document.createTextNode(this.ano));
+        divGenero.appendChild(document.createTextNode(this.genero));
+        divDuracao.appendChild(document.createTextNode(this.duraca));
+        divDirecao.appendChild(document.createTextNode(this.direcao));
+        divElenco.appendChild(document.createTextNode(this.elenco));
+        divAvaliacao.appendChild(document.createTextNode(this.avaliacao));
+        divSinopse.appendChild(document.createTextNode(this.sinopse));
+       
+        divDetalhes.appendChild(divAno);
+        divDetalhes.appendChild(divGenero);
+        divDetalhes.appendChild(divDuracao);
+        divDetalhes.appendChild(divDirecao);
+        divDetalhes.appendChild(divElenco);
+        divDetalhes.appendChild(divAvaliacao);
+        divDetalhes.appendChild(divSinopse);
+
+        cardDetalhes.appendChild(imgDetalhes);
+        cardDetalhes.appendChild(cardBodyDetalhes);
+
+        cardBodyDetalhes.appendChild(hCardTitle);
+        cardBodyDetalhes.appendChild(divDetalhes)
+
+        return cardDetalhes;
+    }   
 }
