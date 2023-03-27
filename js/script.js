@@ -35,6 +35,8 @@ btnBuscarFilme.onclick = () => {
 let listarFilmes = async (filmes) => { 
     listaFilmes.style.display = 'flex';
     listaFilmes.innerHTML = "";
+    mostrarFilmes.style.display = 'flex';
+    mostrarFilmes.innerHTML = "";
     console.log(listaFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
@@ -69,6 +71,15 @@ let detalhesFilme = async (id) =>{
         console.log(filme.getCardDetalhes());
         mostrarFilmes.style.display = 'flex';
         mostrarFilmes.appendChild(filme.getCardDetalhes());
+
+        document.querySelector("#btnSalvar").onclick = () =>{
+            listaFilmes.style.display="flex";
+            mostrarFilmes.style.display = 'flex';
+            mostrarFilmes.innerHTML = "";
+        }
+        document.querySelector("#btnFechar").onclick = () => {
+            
+        }
     })
 }
 

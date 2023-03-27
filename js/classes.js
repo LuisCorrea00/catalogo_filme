@@ -121,6 +121,16 @@ class Filme
         cardBodyDetalhes.appendChild(hCardTitle);
         cardBodyDetalhes.appendChild(divDetalhes)
 
+        let btnSalvar = document.createElement('button');
+        btnSalvar.appendChild(createTextNode('Favoritar'));
+        btnSalvar.setAttribute("id","btnSalvar");
+        divDetalhes.appendChild(btnSalvar);
+
+        let btnFechar = document.createElement('button');
+        btnFechar.appendChild(createTextNode('Favoritar'));
+        btnFechar.setAttribute("id","btnFechar");
+        divDetalhes.appendChild(btnFechar);
+
         return cardDetalhes;
     }   
 }
