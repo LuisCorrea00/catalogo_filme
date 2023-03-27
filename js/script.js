@@ -1,17 +1,17 @@
-let inputBuscarFilme = document.querySelector('#input-buscar-filme');
-let btnBuscarFilme = document.querySelector('#btn-buscar-filme');
-let listaFilmes =  document.querySelector("#lista-filmes");
-let mostrarFilmes = document.querySelector('#mostrar-filme');
+const inputBuscarFilme = document.querySelector('#input-buscar-filme');
+const btnBuscarFilme = document.querySelector('#btn-buscar-filme');
+const listaFilmes =  document.querySelector("#lista-filmes");
+const mostrarFilmes = document.querySelector('#mostrar-filme');
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
-        let filmes = new Array();
+        const filmes = new Array();
         fetch("http://www.omdbapi.com/?apikey=b8335c46&s="+inputBuscarFilme.value, {mode:"cors"})
         .then((resp)=> resp.json())
         .then((resp)=> {
             resp.Search.forEach((item) => {
                 console.log(item);
-                let filme = new Filme(
+                const filme = new Filme(
                     item.imdbID,
                     item.Title,
                     item.Year,
@@ -32,7 +32,7 @@ btnBuscarFilme.onclick = () => {
     mostrarFilmes.style.display = 'none';
     return false;
 }
-let listarFilmes = async (filmes) => { 
+const listarFilmes = async (filmes) => { 
     listaFilmes.style.display = 'flex';
     listaFilmes.innerHTML = "";
     mostrarFilmes.style.display = 'flex';
@@ -50,12 +50,12 @@ let listarFilmes = async (filmes) => {
     }
 }
 
-let detalhesFilme = async (id) =>{
+const detalhesFilme = async (id) =>{
     fetch("http://www.omdbapi.com/?apikey=b8335c46&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
         console.log(resp);
-        let filme = new Filme(
+        const filme = new Filme(
             resp.imdbID,
             resp.Title,
             resp.Year,
@@ -72,12 +72,12 @@ let detalhesFilme = async (id) =>{
         mostrarFilmes.style.display = 'flex';
         mostrarFilmes.appendChild(filme.getCardDetalhes());
 
-        document.querySelector("#btnSalvar").onclick = () =>{
+        document.querySelector("#btnFechar").onclick = () =>{
             listaFilmes.style.display="flex";
             mostrarFilmes.style.display = 'flex';
             mostrarFilmes.innerHTML = "";
         }
-        document.querySelector("#btnFechar").onclick = () => {
+        document.querySelector("#btnSalvar").onclick = () => {
             
         }
     })

@@ -122,12 +122,12 @@ class Filme
         cardBodyDetalhes.appendChild(divDetalhes)
 
         let btnSalvar = document.createElement('button');
-        btnSalvar.appendChild(createTextNode('Favoritar'));
+        btnSalvar.appendChild(document.createTextNode('Favoritar'));
         btnSalvar.setAttribute("id","btnSalvar");
         divDetalhes.appendChild(btnSalvar);
 
         let btnFechar = document.createElement('button');
-        btnFechar.appendChild(createTextNode('Favoritar'));
+        btnFechar.appendChild(document.createTextNode('Fechar'));
         btnFechar.setAttribute("id","btnFechar");
         divDetalhes.appendChild(btnFechar);
 
