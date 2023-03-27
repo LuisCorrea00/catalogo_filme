@@ -2,6 +2,7 @@ const inputBuscarFilme = document.querySelector('#input-buscar-filme');
 const btnBuscarFilme = document.querySelector('#btn-buscar-filme');
 const listaFilmes =  document.querySelector("#lista-filmes");
 const mostrarFilmes = document.querySelector('#mostrar-filme');
+const favoritos = document.querySelector('.favoritos');
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -74,12 +75,17 @@ const detalhesFilme = async (id) =>{
 
         document.querySelector("#btnFechar").onclick = () =>{
             listaFilmes.style.display="flex";
-            mostrarFilmes.style.display = 'flex';
+            mostrarFilmes.style.display = 'none';
             mostrarFilmes.innerHTML = "";
         }
         document.querySelector("#btnSalvar").onclick = () => {
-            
+            salvarFilmes(filme);
         }
     })
 }
 
+favoritos.onclick = () =>{
+    listaFilmes.innerHTML = "";
+    mostrarFilmes.innerHTML = "";
+
+} 
