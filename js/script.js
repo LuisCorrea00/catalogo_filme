@@ -81,7 +81,11 @@ const detalhesFilme = async (id) =>{
         document.querySelector("#btnSalvar").addEventListener("click", () => {
             localStorage.setItem("filme", JSON.stringify(filme));
             let strFilme = localStorage.getItem("filme");
-            salvarFilmes(strFilme);
+            let filmes = null;
+            if(strFilme){
+                filmes = JSON.parse(strFilme);
+                filmeFavorito.push(filmes);
+            }
         })
     })
 }
@@ -91,8 +95,9 @@ const salvarFilmes = (e) =>{
     console.log(filmeFavorito);
 }
 
+
 favoritos.onclick = () =>{
-    listarFilmes(filmeFavorito);
+    
     document.querySelector('.home').classList.remove("active");
     document.querySelector('.favoritos').classList.add("active");
 } 
