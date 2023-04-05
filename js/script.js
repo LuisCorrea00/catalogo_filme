@@ -10,7 +10,7 @@ btnBuscarFilme.onclick = () => {
         document.querySelector('.home').classList.add("active");
         document.querySelector('.favoritos').classList.remove("active");
         const filmes = new Array();
-        fetch("http://www.omdbapi.com/?apikey=b8335c46&s="+inputBuscarFilme.value, {mode:"cors"})
+        fetch("https://www.omdbapi.com/?apikey=b8335c46&s="+inputBuscarFilme.value, {mode:"cors"})
         .then((resp)=> resp.json())
         .then((resp)=> {
             resp.Search.forEach((item) => {
@@ -56,7 +56,7 @@ const listarFilmes = async (filmes) => {
 }
 
 const detalhesFilme = async (id) =>{
-    fetch("http://www.omdbapi.com/?apikey=b8335c46&i="+id)
+    fetch("https://www.omdbapi.com/?apikey=b8335c46&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
         console.log(resp);
@@ -125,7 +125,7 @@ const detalhesFilme = async (id) =>{
 }
 
 const editarFilme = async (id) =>{
-    fetch("http://www.omdbapi.com/?apikey=b8335c46&i="+id)
+    fetch("https://www.omdbapi.com/?apikey=b8335c46&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
         let filme = new Filme(
