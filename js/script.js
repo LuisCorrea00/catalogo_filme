@@ -3,6 +3,7 @@ const btnBuscarFilme = document.querySelector('#btn-buscar-filme');
 const listaFilmes =  document.querySelector("#lista-filmes");
 const mostrarFilmes = document.querySelector('#mostrar-filme');
 const favoritos = document.querySelector('.favoritos');
+const divEditar = document.querySelector('.editar');
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -33,6 +34,7 @@ btnBuscarFilme.onclick = () => {
         })
     }
     mostrarFilmes.style.display = 'none';
+    divEditar.classList.add("hidden");
     return false;
 }
 const listarFilmes = async (filmes) => { 
@@ -78,6 +80,7 @@ const detalhesFilme = async (id) =>{
             listaFilmes.style.display="flex";
             mostrarFilmes.style.display = 'none';
             mostrarFilmes.innerHTML = "";
+            divEditar.classList.add("hidden");
         }
         document.querySelector("#btnSalvar").addEventListener("click", () => {
             const strFilme = localStorage.getItem("favoritos");
@@ -87,7 +90,7 @@ const detalhesFilme = async (id) =>{
                 filmes = JSON.parse(strFilme);
                 filmes.forEach((item)=>{
                     if(item.id === filme.id){
-                        // mostrarFilmes.appendChild(modalWindow(filme));            
+                        alert(`O filme ${filme.titulo} já está favoritado!`);   
                         flag++;
                         return false;
                     }
@@ -115,23 +118,51 @@ const detalhesFilme = async (id) =>{
             }
         }
         document.querySelector('#btnEditar').onclick = () =>{
-            
+            mostrarFilmes.style.display = 'none';
+            editarFilme(filme.id);
         };
     })
 }
 
-// const modalWindow = () =>{
-//     const div = document.createElement("div");
-//     div.setAttribute("style","position: absolute; top: 20rem; left:37rem; width: 30%; height: 5rem; background-color: white; padding: 1rem; border-radius: 40px;box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3); z-index: 10;");
-//     const h1 = document.createElement("h1");
-//     h1.setAttribute("style","font-size: 2rem; margin-bottom: 2rem; text-align: center;");
-//     h1.appendChild(document.createTextNode("Filme já favoritado!"));
-//     div.appendChild(h1);
+const editarFilme = async (id) =>{
+    fetch("http://www.omdbapi.com/?apikey=b8335c46&i="+id)
+    .then((resp) => resp.json())
+    .then((resp) => {
+        let filme = new Filme(
+            resp.imdbID,
+            resp.Title,
+            resp.Year,
+            resp.Genre.split(","),
+            resp.Runtime,
+            resp.Poster,
+            resp.Plot,
+            resp.Director,
+            resp.Actors.split(","),
+            resp.Awards,
+            resp.imdbRating
+        );
 
-//     document.querySelector('.overlay').classList.remove('hidden');
-
-//     return div;
-// }
+        divEditar.classList.remove("hidden");
+        divEditar.innerHTML="";
+        divEditar.appendChild(filme.getForms());
+        
+        document.querySelector("#btnFechar").addEventListener("click", () => {
+            //não está pegando o clique no botão
+            console.log("click");
+            mostrarFilmes.style.display="flex";
+            divEditar.classList.add("hidden");
+            divEditar.innerHTML = "";
+        })
+        document.querySelector("#btnSubmit").addEventListener("click", () => {
+            //mostra no console o "a", porém apresenta o alerta "Form submission canceled because the form is not connected"
+           console.log("a");
+           mostrarFilmes.style.display="flex"; 
+           divEditar.classList.add("hidden");
+           divEditar.innerHTML = "";
+        })
+        
+    })
+}
 
 const listarFavoritos = () =>{
     let strFavoritos = localStorage.getItem("favoritos");
@@ -159,12 +190,14 @@ favoritos.onclick = () =>{
     listarFavoritos();
     document.querySelector('.home').classList.remove("active");
     document.querySelector('.favoritos').classList.add("active");
+    divEditar.classList.add("hidden");
 } 
 
 document.querySelector('.home').onclick=()=>{
     listaFilmes.style.display="flex";
     mostrarFilmes.style.display = 'none';
     mostrarFilmes.innerHTML = "";
+    divEditar.classList.add("hidden");
     document.querySelector('.home').classList.add("active");
     document.querySelector('.favoritos').classList.remove("active");
 };

@@ -21,16 +21,6 @@ body{
 .active{
     font-weight: 600;
 }
-/* .hidden {
+.hidden {
     display: none;
-  } */
-/* .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 99rem;
-    height: 50rem;
-    background-color: rgb(0 0 0 / 60%);
-    backdrop-filter: blur(2px);
-    z-index: 5;
-  } */
+  }

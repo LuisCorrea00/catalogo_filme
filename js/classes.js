@@ -146,22 +146,65 @@ class Filme
         return cardDetalhes;
     }
     getForms = () =>{
-        const forms = Document.createElement("form");
-        const divAno = document.createElement("div");
-        const divGenero = document.createElement("div");
-        const divDuracao = document.createElement("div");
-        const divDirecao = document.createElement("div");
-        const divElenco = document.createElement("div");
-        const divAvaliacao = document.createElement("div");
-        const divSinopse = document.createElement("div");
-        const labelDetalhes = document.createElement("label");
-        const labelAno = document.createElement("label");
-        const labelGenero = document.createElement("label");
-        const labelDuracao = document.createElement("label");
-        const labelDirecao = document.createElement("label");
-        const labelElenco = document.createElement("label");
-        const labelAvaliacao = document.createElement("label");
-        const labelSinopse = document.createElement("div");
-        
+        const forms = document.createElement("form");
+        forms.setAttribute("style","padding: 2rem;");
+
+        const h1 = document.createElement('h1');
+        h1.appendChild(document.createTextNode("Editar detalhes"));
+        h1.setAttribute("style","margin-bottom:2rem; text-align:center;");
+
+        const inputAno = document.createElement("input");
+        inputAno.setAttribute("class","form-control");
+        inputAno.setAttribute("placeholder",this.ano);
+
+        const inputGenero = document.createElement("input");
+        inputGenero.setAttribute("class","form-control");
+        inputGenero.setAttribute("placeholder",this.genero);
+
+        const inputDuracao = document.createElement("input");
+        inputDuracao.setAttribute("class","form-control");
+        inputDuracao.setAttribute("placeholder",this.duracao);
+
+        const inputDirecao = document.createElement("input");
+        inputDirecao.setAttribute("class","form-control");
+        inputDirecao.setAttribute("placeholder",this.direcao);
+
+        const inputElenco = document.createElement("input");
+        inputElenco.setAttribute("class","form-control");
+        inputElenco.setAttribute("placeholder",this.elenco);
+
+        const inputAvaliacao = document.createElement("input");
+        inputAvaliacao.setAttribute("class","form-control");
+        inputAvaliacao.setAttribute("placeholder",this.avaliacao);
+
+        const inputSinopse = document.createElement("textArea");
+        inputSinopse.setAttribute("class","form-control");
+        inputSinopse.setAttribute("placeholder",this.sinopse);
+
+        const btnSubmit = document.createElement('button');
+        btnSubmit.setAttribute("id","btnSubmit");
+        btnSubmit.setAttribute("class","btn btn-primary");
+        btnSubmit.appendChild(document.createTextNode("Salvar"));
+        btnSubmit.setAttribute("style","margin-top:1rem;");
+
+        const btnFechar = document.createElement('button');
+        btnFechar.setAttribute("id","btnFechar");
+        btnFechar.setAttribute("style","position: absolute; top: 8rem; right: 2rem;");
+        btnFechar.setAttribute("type","button");
+        btnFechar.setAttribute("class","btn-close"); 
+        btnFechar.setAttribute("aria-label","Close")
+
+        forms.appendChild(h1);
+        forms.appendChild(inputAno);
+        forms.appendChild(inputGenero);
+        forms.appendChild(inputDuracao);
+        forms.appendChild(inputDirecao);
+        forms.appendChild(inputElenco);
+        forms.appendChild(inputAvaliacao);
+        forms.appendChild(inputSinopse);
+        forms.appendChild(btnSubmit);
+        forms.appendChild(btnFechar);
+
+        return forms;  
     }   
 }
